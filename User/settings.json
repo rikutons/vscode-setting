@@ -1,0 +1,172 @@
+{
+    // #region vscodeのデフォルトの設定 
+    // ----------------------------------------------------------------------------------------------------------
+
+    // #region vscode.editor
+    //----------------------------------------------------------
+    "editor.snippetSuggestions": "top",         // スニペットを候補の上部に表示する
+    "editor.tabCompletion": "on",               // プレフィックスが一致する場合はスニペットを挿入する
+    "editor.wordWrap": "on",                    // エディタの右端で文字を折り返す
+    // "editor.minimap.showSlider": "always",      // ミニマップスライダーは常に表示する
+    // "editor.minimap.renderCharacters": false,   // ミニマップ内の文字を真面目に表示しない (パフォーマンスアップ)
+    "editor.minimap.enabled": false,            // ミニマップを非表示
+    "editor.suggestSelection": "first",         // サジェストの一番上の項目が常に選択されている状態にする
+    "editor.codeLens": false,                   // クラスのreferencesなどの表示を非表示にする
+    "editor.fontFamily": "Ricty Diminished",    // フォントを設定する
+    "editor.fontSize": 15,                      // フォントサイズを設定する
+    "editor.formatOnType": true,                // 自動フォーマットする
+    "editor.formatOnPaste": true,               // ペースト時に自動フォーマットする
+    "editor.renderWhitespace": "boundary",      // 2連続以上の空白を描画する
+    "workbench.editor.enablePreview": false,    // Preview Mode を廃止する
+
+    "[sass]":{                                  // .sassファイルについての設定
+        "editor.tabSize" : 2                    // Tabの大きさを2にする
+    },
+    // #endregion
+
+    // #region vscode others
+    //----------------------------------------------------------
+    "files.autoGuessEncoding": true,            // ファイルの文字コードを予測
+    "files.eol": "\n",                          // 改行コードを変更
+    // Power Shellをコマンドプロンプトに
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "diffEditor.renderSideBySide": false,   // 差分を横に並べて表示ではなく行内に表示する
+    "terminal.integrated.fontSize": 15,     // ターミナルのフォントサイズ変更
+    // #endregion
+
+    
+    // #endregion
+
+    // #region installした拡張の設定
+    // ----------------------------------------------------------------------------------------------------------
+
+    // #region Live Sass Compiler
+    //----------------------------------------------------------
+    "liveSassCompile.settings.generateMap": false,  // mapファイルを出力しない
+    // #endregion
+
+    // #region auto comment blocks 
+    //----------------------------------------------------------
+    // If enabled, pressing Enter inserts a new commented line at the same indentation,
+    // and pressing Shift+Enter breaks the comment block.
+    "auto-comment-blocks.singleLineBlockOnEnter": true,
+    "auto-comment-blocks.hashStyleBlocks": ["ruby"],
+    // #endregion
+
+    // #region vim
+    //----------------------------------------------------------
+
+    // #region 基本設定 
+    //------------------------------
+    "vim.useSystemClipboard": true,         // クリップボードと同期
+    "vim.hlsearch": true,                   // 結果をハイライト
+    "vim.visualstar": true,                 // * や #でカーソル配下の文字列を検索
+    "vim.easymotion": true,                 // EasyMotionを有効に
+    "vim.foldfix": true,                    // 折り畳み個所を乗り越える
+    //"vim.virtualedit" : "onemore",        // PLEAZE IMPLEMENT IT
+    // #endregion
+
+    // #region zenhan (https://qiita.com/iuchi/items/9ddcfb48063fc5ab626c)
+    //------------------------------
+    "vim.autoSwitchInputMethod.enable": true,       // zenhanを有効化する
+    "vim.autoSwitchInputMethod.defaultIM": "0",     // デフォルトのIMEを0(半角)にする
+    // 現在のIMを保存するコマンドへのフルパス 最後の0で半角固定
+    "vim.autoSwitchInputMethod.obtainIMCmd": "E:\\Home\\bin\\zenhan.exe 0",
+    // IMを変更するコマンドへのフルパス
+    "vim.autoSwitchInputMethod.switchIMCmd": "E:\\Home\\bin\\zenhan.exe {im}",
+    // #endregion
+
+    // #region キーバインド 
+    //------------------------------
+    "vim.useCtrlKeys": true,                // 諸々のctrlキーを使った操作が有効になる
+    "vim.leader": "<space>",
+    // ノーマルモード noremap(noremap = 割り当てたキーバインドに間接的にアクセスできない)
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["x"], "after": ["\"", "_", "x"] },             // xキーで消去する文字をクリップボードに入れない
+        { "before": ["j"], "after": ["g", "j"] },                   // 折り返された行でも視覚的に1行移動する
+        { "before": ["k"], "after": ["g", "k"] },                   // 折り返された行でも視覚的に1行移動する
+        { "before": [ ";" ], "after": [ ":" ] },                    // セミコロンでコマンドモードに入る 
+        { "before": [ "<C-j>" ], "after": [ "1", "0", "j" ] },      // Ctrl + j で10行移動する
+        { "before": [ "<C-k>" ], "after": [ "1", "0", "k" ] },      // Ctrl + k で10行移動する
+        { "before": [ "<C-h>" ], "after": [ "0" ] },                // Ctrl + h で左端に移動する
+        { "before": [ "<C-l>" ], "after": [ "$" ] },                // Ctrl + l で右端に移動する
+        { "before": [ "<Leader>", "h" ], "after": [ "g", "T" ] },   // 前のタブに移動
+        { "before": [ "<Leader>", "l" ], "after": [ "g", "t" ] },   // 後のタブに移動
+        { "before": [ "<Leader>", "q" ], "commands": [ ":q" ] },    // tabを閉じる
+        { "before": [ "<Leader>", "Q" ], "commands": [ ":q!" ] },   // tabを強制的に閉じる
+        { "before": [ "<Leader>", "w" ], "commands": [ ":w" ] },    // 保存
+        {
+            "before": [ "<Leader>", "c" ],
+            "commands": [ { "command": "editor.action.commentLine" } ]
+        },                                                          // 選択行をコメント化する
+        {
+            "before": ["<Esc>"],
+            "commands": [":nohlsearch"],
+        },                                                          // Escでハイライトを消去する
+        // 検索結果を画面中央に-------------
+        { "before": [ "n" ], "after": [ "n", "z", "z" ] },
+        { "before": [ "N" ], "after": [ "N", "z", "z" ] },
+        { "before": [ "*" ], "after": [ "*", "z", "z" ] },
+        { "before": [ "#" ], "after": [ "#", "z", "z" ] },
+        // ------------------------------
+    ],
+    //挿入モード
+    "vim.insertModeKeyBindings": [
+        { "before": [ "j", "j" ], "after": [ "<Esc>" ] },           //jjでノーマルモードに戻る
+    ],
+    // 選択モード noremap
+    "vim.visualModeKeyBindingsNonRecursive": [
+        //vを押した直後はvのコマンドが残っているので注意
+        //visualmode後にすぐ実行したいものは、二重で定義する。
+        { "before": [ "<C-j>" ], "after": [ "1", "0", "j" ] },      // Ctrl + j で10行移動する
+        { "before": [ "v", "<C-j>" ], "after": [ "1", "0", "j" ] }, 
+        { "before": [ "<C-k>" ], "after": [ "1", "0", "k" ] },      // Ctrl + k で10行移動する
+        { "before": [ "v", "<C-k>" ], "after": [ "1", "0", "k" ] }, 
+        { "before": [ "<C-h>" ], "after": [ "0" ] },                // Ctrl + h で左端に移動する
+        { "before": [ "v", "<C-h>" ], "after": [ "0" ] },           
+        { "before": [ "<C-l>" ], "after": [ "$" ] },                // Ctrl + l で右端に移動する
+        { "before": [ "v", "<C-l>" ], "after": [ "$" ] },           
+
+        { "before": [ "p" ], "after": [ "\"", "_", "x", "p" ] },    // 貼り付けた後元のテキストをコピーしない
+        { "before": [ "v", "p" ], "after": [ "\"", "_", "x", "p" ] },
+
+        // 折り返された行でも視覚的に1行移動する
+        { "before": ["j"], "after": ["g", "j"] },
+        { "before": ["v", "j"], "after": ["g", "j"] },
+        { "before": ["k"], "after": ["g", "k"] },
+        { "before": ["v", "k"], "after": ["g", "k"] },
+        {
+            "before": [ ">" ],
+            "commands": [ "editor.action.indentLines" ]
+        },                                                          //インデント調整(repeat可能)
+        {
+            "before": [ "<" ],
+            "commands": [ "editor.action.outdentLines" ]
+        },                                                          //インデント調整(repeat可能)
+        {
+            "before": [ "<Leader>", "c" ],
+            "commands": [ { "command": "editor.action.commentLine" } ]
+        },                                                          // 選択行をコメント化する
+    ],
+    // #endregion
+
+    // #endregion
+
+    // #region Highlight
+    //----------------------------------------------------------
+    "highlight.regexes": {                  // 特別な色付けをしたい文字列を登録する
+        "(//\\s*(#region|#endregion))": [   // 折りたたみの開始、終了コメント
+            {
+                "color": "#666",            // 目立たない灰色にする
+            },
+        ],
+    },
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "python.jediEnabled": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    // #endregion
+
+    // #endregion
+}
