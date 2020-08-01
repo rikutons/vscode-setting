@@ -7,3 +7,6 @@ cat ${filename} | while read line
 do
   code --install-extension ${line}
 done
+
+# フォントのインストール
+sudo apt install -y fonts-ricty-diminished
